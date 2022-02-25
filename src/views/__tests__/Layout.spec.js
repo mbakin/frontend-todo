@@ -39,7 +39,7 @@ describe("Layout.vue", () => {
         id: 2,
         title: 'mock test item2',
       }, {
-        id: 1,
+        id: 3,
         title: 'mock test item3',
       }
     ]
