@@ -1,5 +1,8 @@
 <template>
-<h3>Todo Input component</h3>
+  <div>
+    <input type="text" id="add-todo-input">
+    <button id="add-todo-button"></button>
+  </div>
 </template>
 
 <script>
