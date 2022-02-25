@@ -2,6 +2,9 @@ import {shallowMount} from "@vue/test-utils";
 import Layout from "@/views/Layout.vue";
 import TodoList from "@/components/TodoList";
 import TodoInput from "@/components/TodoInput";
+import API from "@/api";
+
+jest.mock('@/api')
 
 describe("Layout.vue", () => {
   it("renders a Layout component", () => {
@@ -14,7 +17,7 @@ describe("Layout.vue", () => {
     const todoInput = wrapper.findComponent(TodoInput);
     expect(todoInput.exists()).toBeTruthy();
   });
-  it('should exists TodoList ', function () {
+  it('should exists ul element ', function () {
     const wrapper = shallowMount(Layout);
     const list = wrapper.find(".todos");
     expect(list.exists()).toBe(true);
