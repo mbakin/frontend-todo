@@ -11,10 +11,24 @@
 <script>
 import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
+import API from "@/api";
 
 export default {
   name: "Layout",
   components: {TodoList, TodoInput},
+
+  methods: {
+    addTodo(todo) {
+
+    }
+  },
+  async created() {
+    try {
+      this.todos = await API.getTodos()
+    }catch (e) {
+      console.log("error:", e)
+    }
+  }
 }
 </script>
 
