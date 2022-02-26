@@ -6,7 +6,7 @@
 </template>
 
 <script>
-
+import API from '../api.js'
 
 export default {
   name: "TodoInput",
@@ -22,6 +22,16 @@ export default {
         this.todos = "";
         return
       }
+      try {
+        this.todos = await API.createTodo(this.todo);
+        this.$emit('todo', this.todos);
+      }catch (error) {
+        console.log(error);
+      }
+      finally {
+        this.todo = "";
+      }
+
     }
   }
 }
