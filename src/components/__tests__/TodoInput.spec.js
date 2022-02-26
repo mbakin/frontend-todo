@@ -1,5 +1,8 @@
 import TodoInput from "@/components/TodoInput";
 import { shallowMount } from "@vue/test-utils";
+import API from "@/api";
+
+jest.mock("@/api");
 
 describe("TodoInput.vue", () => {
   it("should render TodoInput.vue elements correctly", () => {
@@ -42,6 +45,48 @@ describe("TodoInput.vue methods",  () => {
     expect(wrapper.vm.$data.todo).toEqual(todoEmptyValue);
     expect(wrapper.vm.$data.todos).toEqual("");
     expect(todoInput.element.value).toEqual(todoEmptyValue);
+  });
+  
+  it("should working methods when input field is not empty", async () => {
+    let wrapper = shallowMount(TodoInput, {
+      propsData() {
+        return {
+          todo: "",
+          todos: ""
+        }
+      },
+    });
+    
+    const mockResponse = [
+      {
+        id: 1,
+        title: 'mock test item',
+      },
+      {
+        id: 2,
+        title: 'mock test item2',
+      }
+    ]
+    
+    API.createTodo.mockResolvedValue(mockResponse);
+    
+    const todoValue = "mock test item"
+    
+    const todoInput = wrapper.find("#add-todo-input");
+    await todoInput.setValue(todoValue);
+    
+    const addButton = wrapper.find("#add-todo-button");
+    await addButton.trigger("click");
+    
+    expect(API.createTodo).toHaveBeenCalledTimes(1);
+    expect(wrapper.vm.$data.todo).toEqual(todoValue);
+    expect(todoInput.element.value).toEqual(todoValue);
+    
+    await wrapper.vm.$nextTick();
+    
+    expect(wrapper.emitted()).toHaveProperty("todo")
+    expect(wrapper.vm.$data.todos).toEqual([{id: 1, title: 'mock test item'}, {id: 2, title: 'mock test item2'}]);
+    expect(todoInput.element.value).toEqual("");
     
   });
   
