@@ -1,0 +1,51 @@
+{
+  "consumer": {
+    "name": "frontend"
+  },
+  "provider": {
+    "name": "backend"
+  },
+  "interactions": [
+    {
+      "description": "a request for todo list properly",
+      "providerState": "todo list succesfully retrieved",
+      "request": {
+        "method": "GET",
+        "path": "/api/v1/todos"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "data": [
+            {
+              "id": 1,
+              "todo": "dummy todo"
+            }
+          ]
+        },
+        "matchingRules": {
+          "$.body.data": {
+            "min": 1
+          },
+          "$.body.data[*].*": {
+            "match": "type"
+          },
+          "$.body.data[*].id": {
+            "match": "type"
+          },
+          "$.body.data[*].todo": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
