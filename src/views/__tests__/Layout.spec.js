@@ -52,4 +52,25 @@ describe("Layout.vue", () => {
     expect(todoListComponent.exists()).toBeTruthy();
     
   });
+  
+  it("should addTodo methods properly", () => {
+    const spyMethod = jest.spyOn(Layout.methods, "addTodo");
+    
+    const wrapper = shallowMount(Layout, {
+      data() {
+        return {
+          todos: [
+            {"id" : 1, "title" : "test"},
+            {"id" : 2, "title" : "test2"}
+          ]
+        }
+      }
+    });
+    wrapper.findComponent(TodoInput).vm.$emit("todo", {"id" : 3, "title" : "test3"});
+    expect(spyMethod).toHaveBeenCalled()
+    const expectedList = [{"id" : 1, "title" : "test"}, {"id" : 2, "title" : "test2"}, {"id" : 3, "title" : "test3"}];
+    expect(wrapper.vm.$data.todos).toEqual(expectedList);
+  })
+  
+  
 });
