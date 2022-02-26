@@ -1,6 +1,6 @@
 import {pactWith} from 'jest-pact';
 import { Matchers } from '@pact-foundation/pact';
-const { eachLike, like } = Matchers
+const { eachLike, like, number } = Matchers
 import {API} from "@/api";
 
 pactWith( {
@@ -38,5 +38,33 @@ pactWith( {
       expect(res).toBeTruthy();
       expect(res.data.length).toBeGreaterThan(0);
     })
+    
+    test( "create a todo item", async () => {
+      const expectedTodo = {
+        id: like(1),
+        todo: like("dummy todo"),
+      }
+      
+      await provider.addInteraction({
+        state: "todo item succesfully created",
+        uponReceiving: "a request for create todo item properly",
+        withRequest: {
+          method: "POST",
+          path: "/api/v1/todos",
+          body: {"todo": "dummy todo 2"}
+        },
+        willRespondWith : {
+          status: 201,
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: expectedTodo
+        }
+      })
+      const res = await api.createTodo("dummy todo 2");
+      expect(res).toBeTruthy();
+    })
   })
+  
+  
 })

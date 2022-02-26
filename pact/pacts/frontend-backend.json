@@ -41,6 +41,35 @@
           }
         }
       }
+    },
+    {
+      "description": "a request for create todo item properly",
+      "providerState": "todo item succesfully created",
+      "request": {
+        "method": "POST",
+        "path": "/api/v1/todos",
+        "body": {
+          "todo": "dummy todo 2"
+        }
+      },
+      "response": {
+        "status": 201,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": 1,
+          "todo": "dummy todo"
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.todo": {
+            "match": "type"
+          }
+        }
+      }
     }
   ],
   "metadata": {
