@@ -48,6 +48,9 @@
       "request": {
         "method": "POST",
         "path": "/api/v1/todos",
+        "headers": {
+          "Content-Type": "application/json"
+        },
         "body": {
           "todo": "dummy todo 2"
         }

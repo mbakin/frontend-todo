@@ -49,6 +49,9 @@ pactWith( {
         state: "todo item succesfully created",
         uponReceiving: "a request for create todo item properly",
         withRequest: {
+          headers: {
+            "Content-Type": "application/json"
+          },
           method: "POST",
           path: "/api/v1/todos",
           body: {"todo": "dummy todo 2"}
@@ -65,6 +68,4 @@ pactWith( {
       expect(res).toBeTruthy();
     })
   })
-  
-  
 })
