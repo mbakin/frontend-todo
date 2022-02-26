@@ -1,10 +1,10 @@
 <template>
-  <h4>Todo List Component</h4>
+  <li id="todo-item"> </li>
 </template>
 
 <script>
 export default {
-  name: "TodoList"
+  name: "TodoList",
 }
 </script>
 
