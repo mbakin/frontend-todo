@@ -19,3 +19,30 @@ describe("TodoInput.vue", () => {
     expect(inputInitialValue).toBe("");
   });
 })
+
+describe("TodoInput.vue methods",  () => {
+  it("should not working methods when empty input field", async () => {
+    
+    let wrapper = shallowMount(TodoInput, {
+      propsData() {
+        return {
+          todo: "",
+          todos: ""
+        }
+      },
+    });
+    
+    const todoEmptyValue = ""
+    const todoInput = wrapper.find("#add-todo-input");
+    await todoInput.setValue(todoEmptyValue);
+    
+    const addButton = wrapper.find("#add-todo-button");
+    await addButton.trigger("click");
+    
+    expect(wrapper.vm.$data.todo).toEqual(todoEmptyValue);
+    expect(wrapper.vm.$data.todos).toEqual("");
+    expect(todoInput.element.value).toEqual(todoEmptyValue);
+    
+  });
+  
+});
