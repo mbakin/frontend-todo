@@ -1,25 +1,29 @@
 <template>
-<div class="layout">
-  <h2>Web Based Todo List</h2>
-  <TodoInput/>
-  <ul class="todos">
-  <TodoList/>
-  </ul>
-</div>
+  <div class="layout">
+    <h2>Web Based Todo List</h2>
+    <TodoInput @todo="addTodo($event)"/>
+    <ul class="todos">
+      <TodoList v-for="todo in todos" :todo="todo" :key="todo.id" />
+    </ul>
+
+  </div>
 </template>
 
 <script>
 import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
 import API from "@/api";
-
 export default {
   name: "Layout",
   components: {TodoList, TodoInput},
-
+  data () {
+    return {
+      todos: []
+    }
+  },
   methods: {
     addTodo(todo) {
-
+      this.todos.push(todo);
     }
   },
   async created() {
@@ -30,6 +34,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
