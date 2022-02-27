@@ -23,6 +23,11 @@ export default {
   },
   methods: {
     addTodo(todo) {
+      for(let i = 0; i < this.todos.length; i++) {
+        if(this.todos[i].title === todo.title) {
+          return;
+        }
+      }
       this.todos.push(todo);
     }
   },

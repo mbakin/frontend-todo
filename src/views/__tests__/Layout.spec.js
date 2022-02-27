@@ -71,6 +71,4 @@ describe("Layout.vue", () => {
     const expectedList = [{"id" : 1, "title" : "test"}, {"id" : 2, "title" : "test2"}, {"id" : 3, "title" : "test3"}];
     expect(wrapper.vm.$data.todos).toEqual(expectedList);
   })
-  
-  
 });
