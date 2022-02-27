@@ -8,27 +8,31 @@ import API from "@/api";
 jest.mock('@/api')
 
 describe("Layout.vue", () => {
+  
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(Layout);
+  });
   it("renders a Layout component", () => {
-    const wrapper = shallowMount(Layout);
     expect(wrapper.exists()).toBeTruthy();
   });
   
   it("renders a TodoInput component", () => {
-    const wrapper = shallowMount(Layout);
     const todoInput = wrapper.findComponent(TodoInput);
     expect(todoInput.exists()).toBeTruthy();
   });
   it('should exists ul element ', function () {
-    const wrapper = shallowMount(Layout);
     const list = wrapper.find(".todos");
     expect(list.exists()).toBe(true);
   });
   it('should TodoList component exists', async () => {
     API.getTodos.mockResolvedValue([])
-    const wrapper = shallowMount(Layout);
     expect(wrapper.exists()).toBeTruthy()
   });
   
+});
+
+describe("Layout.vue methods", () =>{
   it('should render TodoList item component correctly', async () => {
     const mockResponse = [
       {
@@ -71,4 +75,4 @@ describe("Layout.vue", () => {
     const expectedList = [{"id" : 1, "title" : "test"}, {"id" : 2, "title" : "test2"}, {"id" : 3, "title" : "test3"}];
     expect(wrapper.vm.$data.todos).toEqual(expectedList);
   })
-});
+})

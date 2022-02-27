@@ -5,8 +5,12 @@ import API from "@/api";
 jest.mock("@/api");
 
 describe("TodoInput.vue", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(TodoInput);
+  });
+  
   it("should render TodoInput.vue elements correctly", () => {
-    const wrapper = shallowMount(TodoInput);
     expect(wrapper.exists()).toBe(true);
     
     const addButton = wrapper.find("#add-todo-button");
@@ -24,9 +28,9 @@ describe("TodoInput.vue", () => {
 })
 
 describe("TodoInput.vue methods",  () => {
-  it("should not working methods when empty input field", async () => {
-    
-    let wrapper = shallowMount(TodoInput, {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(TodoInput, {
       propsData() {
         return {
           todo: "",
@@ -34,6 +38,9 @@ describe("TodoInput.vue methods",  () => {
         }
       },
     });
+  });
+  
+  it("should not working methods when empty input field", async () => {
     
     const todoEmptyValue = ""
     const todoInput = wrapper.find("#add-todo-input");
@@ -48,15 +55,6 @@ describe("TodoInput.vue methods",  () => {
   });
   
   it("should working methods when input field is not empty", async () => {
-    let wrapper = shallowMount(TodoInput, {
-      propsData() {
-        return {
-          todo: "",
-          todos: ""
-        }
-      },
-    });
-    
     const mockResponse = [
       {
         id: 1,
@@ -89,5 +87,4 @@ describe("TodoInput.vue methods",  () => {
     expect(todoInput.element.value).toEqual("");
     
   });
-  
 });
