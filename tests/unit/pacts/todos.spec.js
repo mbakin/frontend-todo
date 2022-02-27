@@ -24,19 +24,13 @@ pactWith( {
         willRespondWith: {
           status: 200,
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json; charset=utf-8"
           },
-          body:{
-            data: eachLike({
-              id: like(1),
-              todo: like("dummy todo"),
-            }, 0)
-          }
+          body: []
         }
       })
       const res = await api.getTodos();
       expect(res).toBeTruthy();
-      expect(res.data.length).toBeGreaterThan(0);
     })
     
     test( "create a todo item", async () => {
@@ -49,9 +43,6 @@ pactWith( {
         state: "todo item succesfully created",
         uponReceiving: "a request for create todo item properly",
         withRequest: {
-          headers: {
-            "Content-Type": "application/json"
-          },
           method: "POST",
           path: "/api/v1/todos",
           body: {"todo": "dummy todo 2"}
@@ -59,7 +50,7 @@ pactWith( {
         willRespondWith : {
           status: 201,
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json; charset=utf-8"
           },
           body: expectedTodo
         }
