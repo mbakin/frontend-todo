@@ -45,7 +45,7 @@ pactWith( {
         withRequest: {
           method: "POST",
           path: "/api/v1/todos",
-          body: {"todo": "dummy todo 2"}
+          body: {"todo": "dummy todo 2"},
         },
         willRespondWith : {
           status: 201,
