@@ -1,7 +1,7 @@
 import {pactWith} from 'jest-pact';
 import { Matchers } from '@pact-foundation/pact';
 const { eachLike, like, number } = Matchers
-import {API} from "@/api";
+import API from "@/api";
 
 pactWith( {
   consumer: 'frontend',

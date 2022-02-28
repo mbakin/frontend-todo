@@ -53,7 +53,7 @@ Run the project at unit tests
 
 Run the project at consumer test
 ```bash
-  yarn run test:pact
+  yarn run test:pacts
 ```
 
 Run the project at [localhost:8080]()
