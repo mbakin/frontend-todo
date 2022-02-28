@@ -9,6 +9,8 @@
 This project is a Technologist Interviews project created by [Modanisa](https://www.modanisa.com)
 The project is a basic todo app. The general aim of the project is to maintain the TDD (Test Driven Development) principles.
 
+[Live Server](https://fe-todo-assignment-mbakin.herokuapp.com/)
+
 ![app](https://user-images.githubusercontent.com/68995469/155927941-aefd1399-581b-48f0-b808-031dc7864cf3.png)
 
 
