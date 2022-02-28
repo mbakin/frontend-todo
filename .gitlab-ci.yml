@@ -28,8 +28,8 @@ test:
     - yarn test:unit
 
 
-package:
-  stage: package
+dockerize:
+  stage: dockerize
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
