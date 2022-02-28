@@ -43,3 +43,18 @@ dockerize:
       --destination "${CI_REGISTRY_IMAGE}:latest"
   needs:
     - build
+
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install faraday -v 1.10.0
+    - gem install dpl
+    - dpl --provider=heroku --app=fe-todo-assignment-mbakin --api-key=$HEROKU_API_KEY
+  environment:
+    name: Staging
+    url: https://fe-todo-assignment-mbakin.herokuapp.com/
+  only:
+    - master

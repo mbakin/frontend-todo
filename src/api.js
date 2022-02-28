@@ -29,16 +29,14 @@ export class API {
   
   async getTodos() {
     return axios.
-    get(this.withPath('/api/v1/todos')).
+    get(this.url + '/api/v1/todos').
     then(r => r.data)
   }
   
   async createTodo(todo) {
     return axios.
-    post(this.withPath('/api/v1/todos'), {todo : todo}).
+    post(this.url + '/api/v1/todos', {todo : todo}).
     then(r => r.data)
   }
-  
 }
-
 export default new API(process.env.VUE_APP_BASE_API_URL, true)
