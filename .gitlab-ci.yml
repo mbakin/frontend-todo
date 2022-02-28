@@ -1,0 +1,28 @@
+stages:
+  - build
+  - test
+  - dockerize
+
+cache:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - node_modules
+
+build:
+  image: node:lts-alpine
+  stage: build
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - "dist"
+
+test:
+  image: node:lts-alpine
+  stage: test
+  script:
+    - yarn install
+    - yarn test:unit
