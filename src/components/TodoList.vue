@@ -1,5 +1,7 @@
 <template>
-  <li id="todo-item"> {{todo.todo}} </li>
+  <div>
+    <li id="todo-item"> {{todo.todo}} </li>
+  </div>
 </template>
 
 <script>
