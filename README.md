@@ -1,12 +1,6 @@
 
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/68995469/140025718-126bb88d-4f23-4ab5-98d4-4e7522dbbff6.png">
-</p>
-
 # Web Based Todo List App
 
-This project is a Technologist Interviews project created by [Modanisa](https://www.modanisa.com)
 The project is a basic todo app. The general aim of the project is to maintain the TDD (Test Driven Development) principles.
 
 [Live Server](https://fe-todo-assignment-mbakin.herokuapp.com/)
